@@ -1,0 +1,37 @@
+{
+  "name": "group9",
+  "version": "1.0.0",
+  "description": "DB project",
+  "main": "connection.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "define-properties": "^1.1.3",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "mssql": "^6.0.1",
+    "object-keys": "^1.1.1",
+    "object.assign": "^4.1.0",
+    "on-finished": "^2.3.0",
+    "path": "^0.12.7",
+    "path-is-absolute": "^1.0.1",
+    "path-to-regexp": "^0.1.7",
+    "promise": "^8.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon connection.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BryanFratianne/Group9.git"
+  },
+  "author": "Michael",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BryanFratianne/Group9/issues"
+  },
+  "homepage": "https://github.com/BryanFratianne/Group9#readme"
+}
