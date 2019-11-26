@@ -13,20 +13,20 @@ var db = new sql.ConnectionPool(config);
 var dbConnect = db.connect();
 
 
-app.get('/', async function (req, res){
+app.get('/', async function (req, res) {
     //sends our webpage
     res.sendFile(path.join(__dirname, 'public/CrimeHTML.html'));
 
 });
 
-app.get('/test', async function (req, res){
+app.get('/test', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
         var result = await request.query("select * from crime_description");
         console.dir(result);
         res.json(result);
-    }catch(err){
+    } catch (err) {
         console.error('SQL error', err);
     }
 });
