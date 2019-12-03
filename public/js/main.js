@@ -1,8 +1,8 @@
-$(document).ready(async function(){
+$(document).ready(async function () {
 
-    const response = await fetch('/getCountByCrime');
-    var iucrList = await response.json();
-    console.log(iucrList);
+    //const response = await fetch('/getCountByCrime');
+    //var iucrList = await response.json();
+    //console.log(iucrList);
 
 
     var crimeType = "crimeType";
@@ -12,44 +12,41 @@ $(document).ready(async function(){
     var district = "NULL";
     var ward = "NULL";
 
-    $("#toggleButton").click(function(){
+    $("#toggleButton").click(function () {
         alert("shouldToggleHere");
     });
 
 
-    $("select#CrimeType").change(function() {
+    $("select#CrimeType").change(function () {
         primarySearch = this.value;
         alert("crimeType changed");
     });
 
-    $("#yearStart").change(function(){
+    $("#yearStart").change(function () {
         var temp = parseInt(this.value);
-        if(temp > timeEnd){
-            alert("Year range invalid")
+        if (temp > timeEnd) {
+            alert("Year range invalid");
             $(this).val(timeStart);
-        }
-        else {
+        } else {
             timeStart = this.value;
             alert("changed start year");
         }
     });
-    $("#yearEnd").change(function(){
+    $("#yearEnd").change(function () {
         var temp = parseInt(this.value);
-        if(temp < timeStart){
-            alert("Year range invalid")
+        if (temp < timeStart) {
+            alert("Year range invalid");
             $(this).val(timeEnd);
-        }
-        else {
+        } else {
             timeEnd = this.value;
             alert("changed end year");
         }
     });
 
-    $("#submit").click(function(){
+    $("#submit").click(function () {
         //You can put in the queuryr here, selects queuery on the data selected. 
 
     })
-
 
 
 });
