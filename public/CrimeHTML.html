@@ -10,36 +10,46 @@
     <script type="text/javascript" src="js/main.js"></script>
 
     <style>
-        button{
+        button {
             potition: absolute;
             font-size: 3vw;
             left: 20%;
         }
-        .resizing{
+
+        .resizing {
             font-size: 4.0vw;
         }
-        .textresizing{
+
+        .textresizing {
             font-size: 1.7vw;
         }
-        DIV{
+
+        DIV {
             size: 100%;
             height: 98%;
             top = 10px;
         }
-        body{
-            border-style:solid;
+
+        body {
+            border-style: solid;
         }
     </style>
 </head>
-<body style = "background-color: lightBlue;">
-<DIV id = "container">
-    <h1 class = "resizing"> <center> Chicago Crime Informational Database Interface </center> </h1>
-    <center class = "textresizing"> <strong>Description:</strong> Data sample drawn from the ...Police Something Something... of Chicago.<br/>
+<body style="background-color: lightBlue;">
+<DIV id="container">
+    <h1 class="resizing">
+        <center> Chicago Crime Informational Database Interface</center>
+    </h1>
+    <center class="textresizing"><strong>Description:</strong> Data sample drawn from the ...Police Something
+        Something... of Chicago.<br/>
         Data consists of ...10... years of crimes, arrest and non-arrest in the Chicago area. <br/>
         Items include but not limited to: Crime type, location(Multiple Types) and date/time.<br/>
     </center>
-    <button id = "toggleButton"> Toggle </button>
-    <select id ='CrimeType'>
+    <P>
+    <center class="textresizing" ><button id="toggleButton"> Toggle</button></center>
+    </P>
+    <P align="center">
+    <select id='CrimeType'>
         <option value="*">All</option>
         <option value="ARSON">Arson</option>
         <option value="ASSAULT">Assault</option>
@@ -73,16 +83,14 @@
         <option value="STALKING">Stalking</option>
         <option value="THEFT">Theft</option>
         <option value="WEAPONS VIOLATION">Weapons Violation</option>
-
-
+    </select>
+    </P>
 
     </select>
 
 
 </DIV>
 </body>
-
-
 
 
 <!--<script>
