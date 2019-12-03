@@ -10,46 +10,51 @@
     <script type="text/javascript" src="js/main.js"></script>
 
     <style>
-        .resizing {
+        button{
+            potition: absolute;
+            font-size: 3vw;
+            left: 20%;
+        }
+        .resizing{
             font-size: 4.0vw;
         }
-
-        .textresizing {
+        .textresizing{
             font-size: 1.7vw;
         }
-
-        DIV {
+        DIV{
             size: 100%;
             height: 98%;
-            top: 10px;
+            top = 10px;
         }
-
-        body {
-            border-style: solid;
+        body{
+            border-style:solid;
         }
     </style>
 </head>
-<body style="background-color: lightBlue;">
-<DIV id="container">
-    <h1 class="resizing">
-        <center> Chicago Crime Informational Database Interface</center>
-    </h1>
-    <center class="textresizing"><strong>Description:</strong> Data sample drawn from the ...Police Something
-        Something... of Chicago.<br/>
+<body style = "background-color: lightBlue;">
+<DIV id = "container">
+    <h1 class = "resizing"> <center> Chicago Crime Informational Database Interface </center> </h1>
+    <center class = "textresizing"> <strong>Description:</strong> Data sample drawn from the ...Police Something Something... of Chicago.<br/>
         Data consists of ...10... years of crimes, arrest and non-arrest in the Chicago area. <br/>
         Items include but not limited to: Crime type, location(Multiple Types) and date/time.<br/>
     </center>
+    <button id = "toggleButton"> Toggle </button>
+    <select id ='CrimeType'>
+        <option value="all" >All</option>
+        <option value="type1" >type1</option>
+        <option value="type2" >type2</option>
+        <option value="youGetTheIdea" >type3</option>
+        <option value="preferably alphabetical" >type4</option>
 
-    <select id='searchTypeSelection'>
-        <option value="50000">50,000 miles</option>
-        <option value="100000">100,000 miles</option>
-        <option value="1500000">150,000 miles</option>
-        <option value="200000">200,000 miles</option>
+
+
     </select>
 
 
 </DIV>
 </body>
+
+
 
 
 <!--<script>
