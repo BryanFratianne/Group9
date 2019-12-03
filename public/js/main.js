@@ -1,7 +1,7 @@
-$(document).ready(async function(){
+$(document).ready(async function () {
 
-   const response = await fetch('/test');
-   var iucrList = await response.json();
-   console.log(iucrList);
+    const response = await fetch('/test');
+    var iucrList = await response.json();
+    console.log(iucrList);
 });
 
