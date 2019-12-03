@@ -30,19 +30,19 @@ app.get('/', async function (req, res) {
 
 });
 
-app.get('/SelectAlliucr', async function (req, res){
+app.get('/SelectAlliucr', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
         var result = await request.execute('SelectAlliucr');
         console.dir(result);
         res.json(result);
-    }catch(err){
+    } catch (err) {
         console.error('SQL error', err);
     }
 });
 //for the following code will have to change value from "Arson" to req.variable we pass from dropdown
-app.get('/getCountByCrime', async function (req, res){
+app.get('/getCountByCrime', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
@@ -52,12 +52,12 @@ app.get('/getCountByCrime', async function (req, res){
         console.dir(result);
         console.log(req.body.primaryType);
         res.json(result);
-    }catch(err){
+    } catch (err) {
         console.error('SQL error', err);
     }
 });
 
-app.get('/getCrimesByBlock', async function (req, res){
+app.get('/getCrimesByBlock', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
@@ -71,7 +71,7 @@ app.get('/getCrimesByBlock', async function (req, res){
     }
 });
 
-app.get('/getCrimesByBlockWithTime', async function (req, res){
+app.get('/getCrimesByBlockWithTime', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
@@ -87,7 +87,7 @@ app.get('/getCrimesByBlockWithTime', async function (req, res){
     }
 });
 
-app.get('/getCrimesByDistrict', async function (req, res){
+app.get('/getCrimesByDistrict', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
@@ -101,7 +101,7 @@ app.get('/getCrimesByDistrict', async function (req, res){
     }
 });
 
-app.get('/getCrimesByDistrictWithTime', async function (req, res){
+app.get('/getCrimesByDistrictWithTime', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
@@ -117,7 +117,7 @@ app.get('/getCrimesByDistrictWithTime', async function (req, res){
     }
 });
 
-app.get('/getCrimesByType', async function (req, res){
+app.get('/getCrimesByType', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
@@ -126,12 +126,12 @@ app.get('/getCrimesByType', async function (req, res){
             .execute('getCrimesByType');
         console.dir(result);
         res.json(result);
-    }catch(err){
+    } catch (err) {
         console.error('SQL error', err);
     }
 });
 
-app.get('/getCrimesByWard', async function (req, res){
+app.get('/getCrimesByWard', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
@@ -145,7 +145,7 @@ app.get('/getCrimesByWard', async function (req, res){
     }
 });
 
-app.get('/getCrimesByWardWithTime', async function (req, res){
+app.get('/getCrimesByWardWithTime', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
