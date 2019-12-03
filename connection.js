@@ -15,6 +15,10 @@ var config = {
     requestTimeout: 0
 };
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(express.bodyParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 var db = new sql.ConnectionPool(config);
 var dbConnect = db.connect();
@@ -43,9 +47,10 @@ app.get('/getCountByCrime', async function (req, res){
     try {
         var request = db.request();
         var result = await request
-            .input('primaryType', sql.VarChar(255), "Arson")
+            .input('primaryType', sql.VarChar(255), 'Arson')
             .execute('getCountByCrime');
         console.dir(result);
+        console.log(req.body.primaryType);
         res.json(result);
     }catch(err){
         console.error('SQL error', err);
