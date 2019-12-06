@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>
@@ -20,14 +21,12 @@
             font-size: 4.0vw;
         }
 
-        .textresizing {
+        .textResizing {
             font-size: 1.7vw;
         }
 
-        DIV {
-            size: 100%;
-            height: 98%;
-            top = 10px;
+        div {
+
         }
 
         body {
@@ -35,121 +34,381 @@
         }
     </style>
 </head>
+
 <body style="background-color: lightBlue;">
-<DIV id="container">
+<div id="container">
     <h1 class="resizing">
         <center> Chicago Crime Informational Database Interface</center>
     </h1>
-    <center class="textresizing"><strong>Description:</strong> Data sample drawn from the ...Police Something
+
+    <center class="textResizing"><strong>Description:</strong> Data sample drawn from the ...Police Something
         Something... of Chicago.<br/>
         Data consists of ...10... years of crimes, arrest and non-arrest in the Chicago area. <br/>
         Items include but not limited to: Crime type, location(Multiple Types) and date/time.<br/>
     </center>
-    </center>
-    <P>
-    <center class="textresizing">
+    <br>
+
+
+    <center class="textResizing">
         <button id="toggleButton"> Toggle</button>
+
+        <div id="hideDiv">
+            <h1>Search a crime in the database</h1>
+            <form name="queryForm" action="/getCountByCrime" id="search-info" class="unselectable" unselectable='on'
+                  method="post">
+                <div id="query">
+                    <select name='queryType' id='select-query'>
+                        <option value="/SelectAlliucr">Select Crime By IUCR</option>
+                        <option value="/getCountByCrime">Search number of crimes of given IUCR type</option>
+                        <option value="/getCrimesByBlock">Select Crimes by Street Address</option>
+                        <option value="/getCrimesByBlockWithTime">Select Crimes by Street Address with Year
+                            constraints
+                        </option>
+                        <option value="/getCrimesByDistrict">Select Crimes that happened in a certain district</option>
+                        <option value="/getCrimesByDistrictWithTime">Select Crimes that happened in a certain district
+                            with year constraints
+                        </option>
+                        <option value="/getCrimesByType">Select Crimes by IUCR type</option>
+                        <option value="/getCrimesByWard">Select Crimes that happened in a certain ward</option>
+                        <option value="/getCrimesByWardWithTime">Select Crimes that happened in a certain ward with year
+                            constraints
+                        </option>
+                    </select>
+                </div>
+                <br>
+
+                <P>
+                    <select name='primaryType' id='crimeType'>
+                        <option value="*">All</option>
+                        <option value="ARSON">Arson</option>
+                        <option value="ASSAULT">Assault</option>
+                        <option value="BATTERY">Battery</option>
+                        <option value="BURGLARY">Burglary</option>
+                        <option value="CONCEALED CARRY LICENSE VIOLATION">Concealed Carry License Violation</option>
+                        <option value="CRIM SEXUAL ASSAULT">Criminal Sexual Assault</option>
+                        <option value="CRIMINAL DAMAGE">Criminal Damage</option>
+                        <option value="CRIMINAL TRESPASS">Criminal Trespassing</option>
+                        <option value="DECEPTIVE PRACTICE">Deceptive Practices</option>
+                        <option value="GAMBLING">Gambling</option>
+                        <option value="HOMICIDE">Homicides</option>
+                        <option value="HUMAN TRAFFICKING">Human Trafficking</option>
+                        <option value="INTERFERENCE WITH PUBLIC OFFICER">Interference with a Public Officer</option>
+                        <option value="INTIMIDATION">Intimidation</option>
+                        <option value="KIDNAPPING">Kidnapping</option>
+                        <option value="LIQUOR LAW VIOLATION">Liquor Law Violation</option>
+                        <option value="MOTOR VEHICLE THEFT">Motor Vehicle Theft</option>
+                        <option value="NARCOTICS">Narcotics</option>
+                        <option value="NON-CRIMINAL">Non-Criminal</option>
+                        <option value="OBSCENITY">Obscenity</option>
+                        <option value="OFFENSE INVOLVING CHILDREN">Offense Involving Children</option>
+                        <option value="OTHER NARCOTIC VIOLATION">Other Narcotic Violation</option>
+                        <option value="OTHER OFFENSE">Other Offenses</option>
+                        <option value="PROSTITUTION">Prostitution</option>
+                        <option value="PUBLIC INDECENCY">Public Indecency</option>
+                        <option value="PUBLIC PEACE VIOLATION">Public Peace Violation</option>
+                        <option value="RITUALISM">Ritualism</option>
+                        <option value="ROBBERY">Robbery</option>
+                        <option value="SEX OFFENSE">Sex Offense</option>
+                        <option value="STALKING">Stalking</option>
+                        <option value="THEFT">Theft</option>
+                        <option value="WEAPONS VIOLATION">Weapons Violation</option>
+                    </select>
+
+                <div id="years">
+                    <select name='minYear' id='select-yearStart'>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+
+                    <select name='maxYear' id='select-yearEnd'>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+                <br>
+
+                <div id="searchText">
+                    <p>
+                        Search by Block<br>
+                        <input type="text" name="block" placeholder="Block">
+                    </p>
+                    <p>
+                        select ward<br>
+                        <select name='ward' id='selectWardDrop'>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                        </select>
+                    </p>
+                    <p>
+                        Select district<br>
+                        <select name='district' id='selectDistrictDrop'>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        </select>
+                    </p>
+                </div>
+            </form>
+            <div id="querySubmitButton">
+                <input type="button" id="querySubmit" value="Submit">
+            </div>
+        </div>
+
+        <div id="showDiv">
+            <h1>Enter a new crime into the database</h1>
+            <div>
+                <form name="inputForm">
+                    <p>
+                        What district did the crime take place in<br>
+                        <select name='district' id='inputDistrictDrop'>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                        </select>
+                    </p>
+                    <p>
+                        What ward did the crime take place in<br>
+                        <select name='ward' id='inputWardDrop'>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                        </select>
+                    </p>
+                    <p>
+                        Insert the block where the crime took place at<br>
+                        <input type="text" name="block" placeholder="Block">
+                    </p>
+                    <p>
+                        Time and date crime take place<br>
+                        <input type="text" name="date" placeholder="Time and Date">
+                    </p>
+                    <p>
+                        what was the Longitude<br>
+                        <input type="text" name="longitude" placeholder="Longitude">
+                    </p>
+                    <p>
+                        what was the Latitude<br>
+                        <input type="text" name="latitude" placeholder="Latitude">
+                    </p>
+                    <p>
+                        what was is the case number<br>
+                        <input type="text" name="caseNumber" placeholder="Case number">
+                    </p>
+                    <p>
+                        what was the IUCR<br>
+                        <input type="text" name="iucr" placeholder="IUCR">
+                    </p>
+                    <p>
+                        what was the Primary crime type<br>
+                        <input type="text" name="primaryType" placeholder="Primary crime type">
+                    </p>
+                    <p>
+                        what was the Secondary crime type<br>
+                        <input type="text" name="description" placeholder="Secondary crime type">
+                    </p>
+                    <p>
+                        Description of location<br>
+                        <input type="text" name="locationDescription" placeholder="Location Description">
+                    </p>
+                    <p>
+                        Was the crime domestic<br>
+                        <select name='domestic' id='domesticDrop'>
+                            <option value="TRUE">True</option>
+                            <option value="FALSE">False</option>
+                        </select>
+                    </p>
+                    <P>
+                        Did the crime result in an arrest<br>
+                        <select name='arrest' id='arrestDrop'>
+                            <option value="TRUE">True</option>
+                            <option value="FALSE">False</option>
+                        </select>
+                    </P>
+                </form>
+            </div>
+
+            <div id="inputSubmitButton">
+                <input type="button" id="inputSubmit" value="Submit">
+            </div>
+        </div>
     </center>
-    </P>
-    <P align="center">
-        <select name='pimaryType' id='crimeType'>
-            <option value="*">All</option>
-            <option value="ARSON">Arson</option>
-            <option value="ASSAULT">Assault</option>
-            <option value="BATTERY">Battery</option>
-            <option value="BURGLARY">Burglary</option>
-            <option value="CONCEALED CARRY LICENSE VIOLATION">Concealed Carry License Violation</option>
-            <option value="CRIM SEXUAL ASSAULT">Criminal Sexual Assault</option>
-            <option value="CRIMINAL DAMAGE">Criminal Damage</option>
-            <option value="CRIMINAL TRESPASS">Criminal Trespassing</option>
-            <option value="DECEPTIVE PRACTICE">Deceptive Practices</option>
-            <option value="GAMBLING">Gambling</option>
-            <option value="HOMICIDE">Homicides</option>
-            <option value="HUMAN TRAFFICKING">Human Trafficking</option>
-            <option value="INTERFERENCE WITH PUBLIC OFFICER">Interference with a Public Officer</option>
-            <option value="INTIMIDATION">Intimidation</option>
-            <option value="KIDNAPPING">Kidnapping</option>
-            <option value="LIQUOR LAW VIOLATION">Liquor Law Violation</option>
-            <option value="MOTOR VEHICLE THEFT">Motor Vehicle Theft</option>
-            <option value="NARCOTICS">Narcotics</option>
-            <option value="NON-CRIMINAL">Non-Criminal</option>
-            <option value="OBSCENITY">Obscenity</option>
-            <option value="OFFENSE INVOLVING CHILDREN">Offense Involving Children</option>
-            <option value="OTHER NARCOTIC VIOLATION">Other Narcotic Violation</option>
-            <option value="OTHER OFFENSE">Other Offenses</option>
-            <option value="PROSTITUTION">Prostitution</option>
-            <option value="PUBLIC INDECENCY">Public Indecency</option>
-            <option value="PUBLIC PEACE VIOLATION">Public Peace Violation</option>
-            <option value="RITUALISM">Ritualism</option>
-            <option value="ROBBERY">Robbery</option>
-            <option value="SEX OFFENSE">Sex Offense</option>
-            <option value="STALKING">Stalking</option>
-            <option value="THEFT">Theft</option>
-            <option value="WEAPONS VIOLATION">Weapons Violation</option>
-        </select>
-    </P>
-
-
-    <select name='minYear' id='yearStart'>
-        <option value="2000">2000</option>
-        <option value="2001">2001</option>
-        <option value="2002">2002</option>
-        <option value="2003">2003</option>
-        <option value="2004">2004</option>
-        <option value="2005">2005</option>
-        <option value="2006">2006</option>
-        <option value="2007">2007</option>
-        <option value="2008">2008</option>
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
-        <option value="2010">2020</option>
-    </select>
-    <select name='maxYear' id='yearEnd'>
-        <option value="2000">2000</option>
-        <option value="2001">2001</option>
-        <option value="2002">2002</option>
-        <option value="2003">2003</option>
-        <option value="2004">2004</option>
-        <option value="2005">2005</option>
-        <option value="2006">2006</option>
-        <option value="2007">2007</option>
-        <option value="2008">2008</option>
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-    </select>
-
-    <button id="submit">SUBMIT</button>
-
-
-</DIV>
-</body>
-
-
-<!--<script>
-
-		var search = document.getElementById(searchTypeSelection);
-		search.value = 5;
-		var element = document.getElementById(test);
-		element.innerHTML = search;
-</script>-->
+</div>
 </body>
 </html>
