@@ -54,7 +54,8 @@
 
         <div id="hideDiv">
             <h1>Search a crime in the database</h1>
-            <form name="queryForm" action="/getCountByCrime" id="search-info" class="unselectable" unselectable='on' method="post">
+            <form name="queryForm" action="/getCountByCrime" id="search-info" class="unselectable" unselectable='on'
+                  method="post">
                 <div id="query">
                     <select name='queryType' id='select-query'>
                         <option value="/SelectAlliucr">Select Crime By IUCR</option>
@@ -164,18 +165,95 @@
                 </div>
                 <br>
 
-                <div id="textInput">
+                <div id="searchText">
                     <p>
-                        Insert Block<br>
+                        Search by Block<br>
                         <input type="text" name="block" placeholder="Block">
                     </p>
                     <p>
-                        Insert ward<br>
-                        <input type="text" name="ward" placeholder="Ward">
+                        select ward<br>
+                        <select name='ward' id='selectWardDrop'>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                        </select>
                     </p>
                     <p>
-                        Insert district<br>
-                        <input type="text" name="district" placeholder="District">
+                        Select district<br>
+                        <select name='district' id='selectDistrictDrop'>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        </select>
                     </p>
                 </div>
             </form>
@@ -186,15 +264,150 @@
 
         <div id="showDiv">
             <h1>Enter a new crime into the database</h1>
-            <form name="inputForm">
+            <div>
+                <form name="inputForm">
+                    <p>
+                        What district did the crime take place in<br>
+                        <select name='district' id='inputDistrictDrop'>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                        </select>
+                    </p>
+                    <p>
+                        What ward did the crime take place in<br>
+                        <select name='ward' id='inputWardDrop'>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                        </select>
+                    </p>
+                    <p>
+                        Insert the block where the crime took place at<br>
+                        <input type="text" name="block" placeholder="Block">
+                    </p>
+                    <p>
+                        Time and date crime take place<br>
+                        <input type="text" name="date" placeholder="Time and Date">
+                    </p>
+                    <p>
+                        what was the Longitude<br>
+                        <input type="text" name="longitude" placeholder="Longitude">
+                    </p>
+                    <p>
+                        what was the Latitude<br>
+                        <input type="text" name="latitude" placeholder="Latitude">
+                    </p>
+                    <p>
+                        what was is the case number<br>
+                        <input type="text" name="caseNumber" placeholder="Case number">
+                    </p>
+                    <p>
+                        what was the IUCR<br>
+                        <input type="text" name="iucr" placeholder="IUCR">
+                    </p>
+                    <p>
+                        what was the Primary crime type<br>
+                        <input type="text" name="primaryType" placeholder="Primary crime type">
+                    </p>
+                    <p>
+                        what was the Secondary crime type<br>
+                        <input type="text" name="description" placeholder="Secondary crime type">
+                    </p>
+                    <p>
+                        Description of location<br>
+                        <input type="text" name="locationDescription" placeholder="Location Description">
+                    </p>
+                    <p>
+                        Was the crime domestic<br>
+                        <select name='domestic' id='domesticDrop'>
+                            <option value="TRUE">True</option>
+                            <option value="FALSE">False</option>
+                        </select>
+                    </p>
+                    <P>
+                        Did the crime result in an arrest<br>
+                        <select name='arrest' id='arrestDrop'>
+                            <option value="TRUE">True</option>
+                            <option value="FALSE">False</option>
+                        </select>
+                    </P>
+                </form>
+            </div>
 
-
-            </form>
             <div id="inputSubmitButton">
                 <input type="button" id="inputSubmit" value="Submit">
             </div>
         </div>
-
     </center>
 </div>
 </body>

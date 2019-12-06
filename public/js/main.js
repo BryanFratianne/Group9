@@ -24,9 +24,9 @@ $(document).ready(async function () {
         console.log(iucrList);
     }
 
-    $("#toggleButton").click(function () {
+    /*$("#toggleButton").click(function () {
         alert("shouldToggleHere");
-    });
+    });*/
 
     $("select#CrimeType").change(function () {
         primarySearch = this.value;
