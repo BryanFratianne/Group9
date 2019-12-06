@@ -33,7 +33,7 @@ $(document).ready(async function () {
         alert("crimeType changed");
     });
 
-    $("#yearStart").change(function () {
+    $("#select-yearStart").change(function () {
         var temp = parseInt(this.value);
         if (temp > timeEnd) {
             alert("Year range invalid");
@@ -44,7 +44,7 @@ $(document).ready(async function () {
         }
     });
 
-    $("#yearEnd").change(function () {
+    $("#select-yearEnd").change(function () {
         var temp = parseInt(this.value);
         if (temp < timeStart) {
             alert("Year range invalid");
