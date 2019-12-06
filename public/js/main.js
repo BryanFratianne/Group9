@@ -12,6 +12,15 @@ $(document).ready(async function () {
     var district = "NULL";
     var ward = "NULL";
 
+    //grabs everything after = in URL, pretty basic will need improvement if passing more than one variable.
+    var queryType = (window.location.href).slice(window.location.href.search('=') + 1, window.location.href.length);
+
+    if(queryType != "http://localhost:8000/"){
+        const response = await fetch(queryType);
+        var iucrList = await response.json();
+        console.log(iucrList);
+    }
+
     $("#toggleButton").click(function () {
         alert("shouldToggleHere");
     });
