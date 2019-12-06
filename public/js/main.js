@@ -1,9 +1,10 @@
 $(document).ready(async function () {
 
-    
+
 
     var searchInfo = document.getElementById("search-info");
     var submit = document.getElementById("submit");
+    var toggle = document.getElementById("toggleButton");
     var crimeType = "crimeType";
     var timeStart = "2000";
     var timeEnd = "2020";
@@ -54,7 +55,21 @@ $(document).ready(async function () {
         console.log(iucrList);*/
         //You can put in the queury here, selects queuery on the data selected.
 
-    })
+    });
 
+    toggle.addEventListener('click', function switchVisible() {
+        if (document.getElementById('hideDiv')) {
+
+            if (document.getElementById('hideDiv').style.display == 'none') {
+                document.getElementById('hideDiv').style.display = 'block';
+                document.getElementById('showDiv').style.display = 'none';
+            } else {
+                document.getElementById('hideDiv').style.display = 'none';
+                document.getElementById('showDiv').style.display = 'block';
+            }
+        }
+    });
 
 });
+
+
