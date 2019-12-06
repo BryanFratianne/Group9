@@ -54,7 +54,6 @@ app.get('/SelectAlliucr', async function (req, res) {
 app.post('/getCountByCrime', async function (req, res) {
     primeType = req.body.primaryType;
     res.redirect('/?query=/getCountByCrime');
-    //res.sendFile(path.join(__dirname, 'public/CrimeHTML.html?query=/getCountByCrime'));
 });
 app.get('/getCountByCrime', async function (req, res) {
     console.log(primeType);
@@ -75,7 +74,7 @@ app.get('/getCountByCrime', async function (req, res) {
 app.post('/getCrimesByBlock', async function (req, res) {
     //need to change block variable
     block = req.body.primaryType;
-    res.sendFile(path.join(__dirname, 'public/CrimeHTML.html?query=/getCrimesByBlock'));
+    res.redirect('/?query=/getCrimesByBlock');
 
 });
 
@@ -98,7 +97,7 @@ app.post('/getCrimesByBlockWithTime', async function (req, res) {
     block = req.body.primaryType;
     minYear = req.body.minYear;
     maxYear = req.body.maxYear;
-    res.sendFile(path.join(__dirname, 'public/CrimeHTML.html?query=/getCrimesByBlockWithTime'));
+    res.redirect('/?query=/getCrimesByBlockWithTime');
 });
 
 app.get('/getCrimesByBlockWithTime', async function (req, res) {
@@ -120,7 +119,7 @@ app.get('/getCrimesByBlockWithTime', async function (req, res) {
 app.post('/getCrimesByDistrict', async function (req, res) {
     //change district variable
     district = req.body.primaryType;
-    res.sendFile(path.join(__dirname, 'public/CrimeHTML.html?query=/getCrimesByDistrict'));
+    res.redirect('/?query=/getCrimesByDistrict');
 });
 
 app.get('/getCrimesByDistrict', async function (req, res) {
