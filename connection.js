@@ -40,6 +40,10 @@ app.get('/', async function (req, res) {
 
 });
 
+app.post('/SelectAlliucr', async function (req, res) {
+    res.redirect('/?query=/SelectAlliucr');
+});
+
 app.get('/SelectAlliucr', async function (req, res) {
     await dbConnect;
     try {
