@@ -1,10 +1,9 @@
 $(document).ready(async function () {
 
-    //const response = await fetch('/getCountByCrime');
-    //var iucrList = await response.json();
-    //console.log(iucrList);
+    
 
-
+    var searchInfo = document.getElementById("search-info");
+    var submit = document.getElementById("submit");
     var crimeType = "crimeType";
     var timeStart = "2000";
     var timeEnd = "2020";
@@ -43,8 +42,17 @@ $(document).ready(async function () {
         }
     });
 
-    $("#submit").click(function () {
-        //You can put in the queuryr here, selects queuery on the data selected. 
+
+    submit.addEventListener("click", async function () {
+        searchInfo.submit();
+        /*const response = await fetch('/getCountByCrime', {
+            method: 'POST',
+            //body: JSON.stringify({primaryType: })
+        });*/
+        /*const response = await fetch('/getCountByCrime');
+        var iucrList = await response.json();
+        console.log(iucrList);*/
+        //You can put in the queury here, selects queuery on the data selected.
 
     })
 

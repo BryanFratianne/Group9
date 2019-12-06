@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>
@@ -24,10 +25,10 @@
             font-size: 1.7vw;
         }
 
-        DIV {
+        div {
             size: 100%;
             height: 98%;
-            top = 10px;
+            top : 10px;
         }
 
         body {
@@ -36,7 +37,7 @@
     </style>
 </head>
 <body style="background-color: lightBlue;">
-<DIV id="container">
+<div id="container">
     <h1 class="resizing">
         <center> Chicago Crime Informational Database Interface</center>
     </h1>
@@ -51,15 +52,29 @@
         <button id="toggleButton"> Toggle</button>
     </center>
     </P>
-    <P align="center">
-        <select name='pimaryType' id='crimeType'>
-            <option value="*">All</option>
+    <form name="mainForm" action="/getCountByCrime" id="search-info" class="unselectable" unselectable='on' method="post">
+    <div id= "query" align="center">
+        <select name='queryType' id='select-query'>
+            <option value="/SelectAlliucr">Select Crime By IUCR</option>
+            <option value="/getCountByCrime">Search number of crimes of given IUCR type</option>
+            <option value="/getCrimesByBlock">Select Crimes by Street Address</option>
+            <option value="/getCrimesByBlockWithTime">Select Crimes by Street Address with Year constraints</option>
+            <option value="/getCrimesByDistrict">Select Crimes that happened in a certain district</option>
+            <option value="/getCrimesByDistrictWithTime">Select Crimes that happened in a certain district with year constraints</option>
+            <option value="/getCrimesByType">Select Crimes by IUCR type</option>
+            <option value="/getCrimesByWard">Select Crimes that happened in a certain ward</option>
+            <option value="/getCrimesByWardWithTime">Select Crimes that happened in a certain ward with year constraints</option>
+        </select>
+    </div>
+    <div id="crimeType" align="center">
+        <select name='primaryType' id='select-crimeType'>
             <option value="ARSON">Arson</option>
+            <option value="*">All</option>
             <option value="ASSAULT">Assault</option>
             <option value="BATTERY">Battery</option>
             <option value="BURGLARY">Burglary</option>
             <option value="CONCEALED CARRY LICENSE VIOLATION">Concealed Carry License Violation</option>
-            <option value="CRIM SEXUAL ASSAULT">Criminal Sexual Assault</option>
+            <option value="CRIME SEXUAL ASSAULT">Criminal Sexual Assault</option>
             <option value="CRIMINAL DAMAGE">Criminal Damage</option>
             <option value="CRIMINAL TRESPASS">Criminal Trespassing</option>
             <option value="DECEPTIVE PRACTICE">Deceptive Practices</option>
@@ -87,60 +102,70 @@
             <option value="THEFT">Theft</option>
             <option value="WEAPONS VIOLATION">Weapons Violation</option>
         </select>
-    </P>
+    </div>
+
+    <div id="yearStart">
+        <select name='minYear' id='select-yearStart'>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2010">2020</option>
+        </select>
+    </div>
+    
+    <div id="yearEnd">
+        <select name='maxYear' id='select-yearEnd'>
+            <option value="2000">2000</option>
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+        </select>
+    </div>
+    
+
+</form>
+    <div id="submitButton">
+        <input type="button" id="submit" value="Submit">
+    </div>
+    
 
 
-    <select name='minYear' id='yearStart'>
-        <option value="2000">2000</option>
-        <option value="2001">2001</option>
-        <option value="2002">2002</option>
-        <option value="2003">2003</option>
-        <option value="2004">2004</option>
-        <option value="2005">2005</option>
-        <option value="2006">2006</option>
-        <option value="2007">2007</option>
-        <option value="2008">2008</option>
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
-        <option value="2010">2020</option>
-    </select>
-    <select name='maxYear' id='yearEnd'>
-        <option value="2000">2000</option>
-        <option value="2001">2001</option>
-        <option value="2002">2002</option>
-        <option value="2003">2003</option>
-        <option value="2004">2004</option>
-        <option value="2005">2005</option>
-        <option value="2006">2006</option>
-        <option value="2007">2007</option>
-        <option value="2008">2008</option>
-        <option value="2009">2009</option>
-        <option value="2010">2010</option>
-        <option value="2011">2011</option>
-        <option value="2012">2012</option>
-        <option value="2013">2013</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-    </select>
+</div>
 
-    <button id="submit">SUBMIT</button>
-
-
-</DIV>
 </body>
 
 
