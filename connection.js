@@ -9,6 +9,7 @@ var block = undefined;
 var minYear = undefined;
 var maxYear = undefined;
 var district = undefined;
+var ward = undefined;
 
 //login string for connecting to database
 var config = {
@@ -50,7 +51,7 @@ app.get('/SelectAlliucr', async function (req, res) {
         console.error('SQL error', err);
     }
 });
-//for the following code will have to change value from "Arson" to req.variable we pass from dropdown
+
 app.post('/getCountByCrime', async function (req, res) {
     primeType = req.body.primaryType;
     res.redirect('/?query=/getCountByCrime');
@@ -72,8 +73,7 @@ app.get('/getCountByCrime', async function (req, res) {
 });
 
 app.post('/getCrimesByBlock', async function (req, res) {
-    //need to change block variable
-    block = req.body.primaryType;
+    block = req.body.block;
     res.redirect('/?query=/getCrimesByBlock');
 
 });
@@ -93,8 +93,7 @@ app.get('/getCrimesByBlock', async function (req, res) {
 });
 
 app.post('/getCrimesByBlockWithTime', async function (req, res) {
-    //need to change block variable
-    block = req.body.primaryType;
+    block = req.body.block;
     minYear = req.body.minYear;
     maxYear = req.body.maxYear;
     res.redirect('/?query=/getCrimesByBlockWithTime');
@@ -117,8 +116,7 @@ app.get('/getCrimesByBlockWithTime', async function (req, res) {
 });
 
 app.post('/getCrimesByDistrict', async function (req, res) {
-    //change district variable
-    district = req.body.primaryType;
+    district = req.body.district;
     res.redirect('/?query=/getCrimesByDistrict');
 });
 
@@ -137,13 +135,20 @@ app.get('/getCrimesByDistrict', async function (req, res) {
 });
 
 app.post('/getCrimesByDistrictWithTime', async function (req, res) {
+    district = req.body.district;
+    minYear = req.body.minYear;
+    maxYear = req.body.maxYear;
+    res.redirect('/?query=/getCrimesByDistrictWithTime');
+});
+
+app.get('/getCrimesByDistrictWithTime', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
         var result = await request
-            .input('District', sql.VarChar(255), "25")
-            .input('dateMin', sql.VarChar(255), '2005')
-            .input('dateMax', sql.VarChar(255), '2005')
+            .input('District', sql.VarChar(255), district)
+            .input('dateMin', sql.VarChar(255), minYear)
+            .input('dateMax', sql.VarChar(255), maxYear)
             .execute('getCrimesByDistrictWithTime');
         console.dir(result);
         res.json(result);
@@ -153,17 +158,8 @@ app.post('/getCrimesByDistrictWithTime', async function (req, res) {
 });
 
 app.post('/getCrimesByType', async function (req, res) {
-    await dbConnect;
-    try {
-        var request = db.request();
-        var result = await request
-            .input('primaryType', sql.VarChar(255), "Arson")
-            .execute('getCrimesByType');
-        console.dir(result);
-        res.json(result);
-    } catch (err) {
-        console.error('SQL error', err);
-    }
+    primeType = req.body.primaryType;
+    res.redirect('/?query=/getCrimesByType');
 });
 
 app.get('/getCrimesByType', async function (req, res) {
@@ -171,7 +167,7 @@ app.get('/getCrimesByType', async function (req, res) {
     try {
         var request = db.request();
         var result = await request
-            .input('primaryType', sql.VarChar(255), "Arson")
+            .input('primaryType', sql.VarChar(255), primeType)
             .execute('getCrimesByType');
         console.dir(result);
         res.json(result);
@@ -181,11 +177,17 @@ app.get('/getCrimesByType', async function (req, res) {
 });
 
 app.post('/getCrimesByWard', async function (req, res) {
+    ward = req.body.ward;
+    res.redirect('/?query=/getCrimesByWard');
+
+});
+
+app.get('/getCrimesByWard', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
         var result = await request
-            .input('Ward', sql.VarChar(255), "7")
+            .input('Ward', sql.VarChar(255), ward)
             .execute('getCrimesByWard');
         console.dir(result);
         res.json(result);
@@ -195,13 +197,20 @@ app.post('/getCrimesByWard', async function (req, res) {
 });
 
 app.post('/getCrimesByWardWithTime', async function (req, res) {
+    ward = req.body.ward;
+    minYear = req.body.minYear;
+    maxYear = req.body.maxYear;
+    res.redirect('/?query=/getCrimesByWardWithTime')
+});
+
+app.get('/getCrimesByWardWithTime', async function (req, res) {
     await dbConnect;
     try {
         var request = db.request();
         var result = await request
-            .input('Ward', sql.VarChar(255), "7")
-            .input('dateMin', sql.VarChar(255), '2005')
-            .input('dateMax', sql.VarChar(255), '2005')
+            .input('Ward', sql.VarChar(255), ward)
+            .input('dateMin', sql.VarChar(255), minYear)
+            .input('dateMax', sql.VarChar(255), maxYear)
             .execute('getCrimesByWardWithTime');
         console.dir(result);
         res.json(result);

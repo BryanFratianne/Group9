@@ -5,6 +5,7 @@ $(document).ready(async function () {
     var searchInfo = document.getElementById("search-info");
     var submit = document.getElementById("submit");
     var toggle = document.getElementById("toggleButton");
+    var selectedQuery = document.getElementById("select-query");
     var crimeType = "crimeType";
     var timeStart = "2000";
     var timeEnd = "2020";
@@ -15,6 +16,7 @@ $(document).ready(async function () {
     //grabs everything after = in URL, pretty basic will need improvement if passing more than one variable.
     var queryType = (window.location.href).slice(window.location.href.search('=') + 1, window.location.href.length);
 
+    //checks if URL has attribute, if not then it does nothing else it fetchs the appropriate function
     if(queryType != "http://localhost:8000/"){
         const response = await fetch(queryType);
         var iucrList = await response.json();
@@ -51,18 +53,15 @@ $(document).ready(async function () {
             alert("changed end year");
         }
     });
+    //changes the action on the query submit form based on what search dropdown is chosen
+    // so that the appropriate stored procedure is called
+    selectedQuery.addEventListener("change", function(){
+        document.queryForm.action = selectedQuery.options[selectedQuery.selectedIndex].value;
+    });
 
-
+    //submits query form to connection.js so that it can store variables from form then perform query.
     submit.addEventListener("click", async function () {
         searchInfo.submit();
-        /*const response = await fetch('/getCountByCrime', {
-            method: 'POST',
-            //body: JSON.stringify({primaryType: })
-        });*/
-        /*const response = await fetch('/getCountByCrime');
-        var iucrList = await response.json();
-        console.log(iucrList);*/
-        //You can put in the queury here, selects queuery on the data selected.
 
     });
 
