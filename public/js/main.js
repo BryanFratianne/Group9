@@ -3,7 +3,8 @@ $(document).ready(async function () {
 
 
     var searchInfo = document.getElementById("search-info");
-    var submit = document.getElementById("submit");
+    var querySubmit = document.getElementById("querySubmit");
+    var inputSubmit = document.getElementById("inputSubmit");
     var toggle = document.getElementById("toggleButton");
     var selectedQuery = document.getElementById("select-query");
     var crimeType = "crimeType";
@@ -17,10 +18,9 @@ $(document).ready(async function () {
     //grabs everything after = in URL, pretty basic will need improvement if passing more than one variable.
     var queryType = (window.location.href).slice(window.location.href.search('=') + 1, window.location.href.length);
 
-    $("#toggleButton").click(function () {
+    /*$("#toggleButton").click(function () {
         alert("shouldToggleHere");
-    });
-
+    });*/
 
     $("select#CrimeType").change(function () {
         primarySearch = this.value;
@@ -37,6 +37,7 @@ $(document).ready(async function () {
             alert("changed start year");
         }
     });
+
     $("#yearEnd").change(function () {
         var temp = parseInt(this.value);
         if (temp < timeStart) {
@@ -53,10 +54,13 @@ $(document).ready(async function () {
         document.queryForm.action = selectedQuery.options[selectedQuery.selectedIndex].value;
     });
 
-    //submits query form to connection.js so that it can store variables from form then perform query.
-    submit.addEventListener("click", async function () {
-        searchInfo.submit();
 
+    querySubmit.addEventListener("click", async function () {
+        searchInfo.submit();
+    });
+
+    inputSubmit.addEventListener("click", async function () {
+        searchInfo.submit();
     });
 
     toggle.addEventListener('click', function switchVisible() {
