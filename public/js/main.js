@@ -12,16 +12,10 @@ $(document).ready(async function () {
     var block = "NULL";
     var district = "NULL";
     var ward = "NULL";
+    var list = 0;
 
     //grabs everything after = in URL, pretty basic will need improvement if passing more than one variable.
     var queryType = (window.location.href).slice(window.location.href.search('=') + 1, window.location.href.length);
-
-    //checks if URL has attribute, if not then it does nothing else it fetchs the appropriate function
-    if(queryType != "http://localhost:8000/"){
-        const response = await fetch(queryType);
-        var iucrList = await response.json();
-        console.log(iucrList);
-    }
 
     $("#toggleButton").click(function () {
         alert("shouldToggleHere");
@@ -76,8 +70,77 @@ $(document).ready(async function () {
                 document.getElementById('showDiv').style.display = 'block';
             }
         }
+
     });
 
+    //checks if URL has attribute, if not then it does nothing else it fetchs the appropriate function
+    if (queryType != "http://localhost:8000/") {
+        async function loadResults() {
+            const response = await fetch(queryType);
+            list = await response.json();
+            console.log(list);
+            console.log(list.recordset.length);
+        }
+
+        window.onload = loadResults().then(function () {
+
+            GFG_FUN();
+
+            // Appending the header to the table
+            //$("#table").append(header);
+            //return columns;
+        });
+    }
+
+    function GFG_FUN() {
+        var cols = [];
+
+        for (var i = 0; i < list.recordset.length; i++) {
+            for (var k in list.recordset[i]) {
+                if (cols.indexOf(k) === -1) {
+                    console.log("working");
+                    // Push all keys to the array
+                    cols.push(k);
+                }
+            }
+        }
+
+        // Create a table element
+        var table = document.createElement("table");
+
+        // Create table row tr element of a table
+        var tr = table.insertRow(-1);
+
+        for (var i = 0; i < cols.length; i++) {
+
+            // Create the table header th element
+            var theader = document.createElement("th");
+            theader.innerHTML = cols[i];
+
+            // Append columnName to the table row
+            tr.appendChild(theader);
+        }
+
+        // Adding the data to the table
+        for (var i = 0; i < list.recordset.length; i++) {
+
+            // Create a new row
+            trow = table.insertRow(-1);
+            for (var j = 0; j < cols.length; j++) {
+                var cell = trow.insertCell(-1);
+
+                // Inserting the cell at particular place
+                cell.innerHTML = list.recordset[i][cols[j]];
+            }
+        }
+
+        // Add the newely created table containing json data
+        var el = document.getElementById("table");
+        el.innerHTML = "";
+        el.appendChild(table);
+    }
 });
+
+
 
 
