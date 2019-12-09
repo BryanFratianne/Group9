@@ -56,6 +56,7 @@
             <h1>Search a crime in the database</h1>
             <form name="queryForm" action="/SelectAlliucr" id="search-info" class="unselectable" unselectable='on' method="post">
                 <div id="query">
+                    How would you like to search the database<br>
                     <select name='queryType' id='select-query'>
                         <option value="/SelectAlliucr">Select Crime By IUCR</option>
                         <option value="/getCountByCrime">Search number of crimes of given IUCR type</option>
@@ -77,7 +78,8 @@
                 <br>
 
                 <P>
-                    <select name='primaryType' id='crimeType' class='queryVariable'>
+                    What type of crime would you like to search<br>
+                    <select name='primaryType' id='crimeType'class='queryVariable'>
                         <option value="*">All</option>
                         <option value="ARSON">Arson</option>
                         <option value="ASSAULT">Assault</option>
@@ -114,7 +116,9 @@
                     </select>
 
                 <div id="years">
-                    <select name='minYear' id='select-yearStart' class='queryVariable'>
+                What years would you like to search through<br>
+                    <select name='minYear' id='select-yearStart'class='queryVariable'>
+                        <option value="YYYY">YYYY</option>
                         <option value="2000">2000</option>
                         <option value="2001">2001</option>
                         <option value="2002">2002</option>
@@ -138,7 +142,8 @@
                         <option value="2020">2020</option>
                     </select>
 
-                    <select name='maxYear' id='select-yearEnd' class='queryVariable'>
+                    <select name='maxYear' id='select-yearEnd'class='queryVariable'>
+                        <option value="YYYY">YYYY</option>
                         <option value="2000">2000</option>
                         <option value="2001">2001</option>
                         <option value="2002">2002</option>
@@ -162,7 +167,6 @@
                         <option value="2020">2020</option>
                     </select>
                 </div>
-                <br>
 
                 <div id="searchText">
                     <p>
@@ -170,8 +174,9 @@
                         <input type="text" name="block" placeholder="Block" class='queryVariable'>
                     </p>
                     <p>
-                        select ward<br>
+                        Select Ward<br>
                         <select name='ward' id='selectWardDrop' class='queryVariable'>
+                            <option value="">Ward</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -225,32 +230,33 @@
                         </select>
                     </p>
                     <p>
-                        Select district<br>
+                        Select District<br>
                         <select name='district' id='selectDistrictDrop' class='queryVariable'>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
+                            <option value="">District</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
                         <option value="25">25</option>
                         </select>
                     </p>
@@ -259,6 +265,7 @@
             <div id="querySubmitButton">
                 <input type="button" id="querySubmit" value="Submit">
             </div>
+            <br>
         </div>
 
         <div id="showDiv">
@@ -268,6 +275,7 @@
                     <p>
                         What district did the crime take place in<br>
                         <select name='district' id='inputDistrictDrop'>
+                            <option value="">District</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -298,6 +306,7 @@
                     <p>
                         What ward did the crime take place in<br>
                         <select name='ward' id='inputWardDrop'>
+                            <option value="">Ward</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -389,6 +398,7 @@
                     <p>
                         Was the crime domestic<br>
                         <select name='domestic' id='domesticDrop'>
+                            <option value=""></option>
                             <option value="TRUE">True</option>
                             <option value="FALSE">False</option>
                         </select>
@@ -396,6 +406,7 @@
                     <P>
                         Did the crime result in an arrest<br>
                         <select name='arrest' id='arrestDrop'>
+                            <option value=""></option>
                             <option value="TRUE">True</option>
                             <option value="FALSE">False</option>
                         </select>
@@ -406,6 +417,7 @@
             <div id="inputSubmitButton">
                 <input type="button" id="inputSubmit" value="Submit">
             </div>
+            <br>
         </div>
     </center>
 </div>
