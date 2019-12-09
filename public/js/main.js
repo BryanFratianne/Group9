@@ -7,6 +7,9 @@ $(document).ready(async function () {
     var inputSubmit = document.getElementById("inputSubmit");
     var toggle = document.getElementById("toggleButton");
     var selectedQuery = document.getElementById("select-query");
+    var getqueryVariables = document.getElementsByClassName("queryVariable");
+    var queryVariables = {primaryType: undefined, minYear: undefined, maxYear: undefined, block: undefined, ward: undefined, district: undefined};
+    var currentQuery = "/SelectAlliucr"
     var crimeType = "crimeType";
     var timeStart = "2000";
     var timeEnd = "2020";
@@ -15,8 +18,6 @@ $(document).ready(async function () {
     var ward = "NULL";
     var list = 0;
 
-    //grabs everything after = in URL, pretty basic will need improvement if passing more than one variable.
-    var queryType = (window.location.href).slice(window.location.href.search('=') + 1, window.location.href.length);
 
     /*$("#toggleButton").click(function () {
         alert("shouldToggleHere");
@@ -51,13 +52,48 @@ $(document).ready(async function () {
     //changes the action on the query submit form based on what search dropdown is chosen
     // so that the appropriate stored procedure is called
     selectedQuery.addEventListener("change", function(){
-        document.queryForm.action = selectedQuery.options[selectedQuery.selectedIndex].value;
+        currentQuery = selectedQuery.options[selectedQuery.selectedIndex].value;
+        console.log(currentQuery);
     });
 
+    var updateVariables = function() {
+        queryVariables.primaryType = getqueryVariables[0].value;
+        queryVariables.minYear = getqueryVariables[1].value;
+        queryVariables.maxYear = getqueryVariables[2].value;
+        queryVariables.block = getqueryVariables[3].value;
+        queryVariables.ward = getqueryVariables[4].value;
+        queryVariables.district = getqueryVariables[5].value;
+        console.log(queryVariables);
+    };
 
+    for (var i = 0; i < getqueryVariables.length; i++){
+        getqueryVariables[i].addEventListener('click', updateVariables)
+    }
     querySubmit.addEventListener("click", async function () {
-        searchInfo.submit();
+        //searchInfo.submit();
+        try {
+            const list1 = await postData(currentQuery, queryVariables);
+            list = list1;
+            console.log(list); // JSON-string from `response.json()` call
+
+          } catch (error) {
+            console.error(error);
+          }
+        GFG_FUN();
+
     });
+
+    async function postData(url = '', data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          headers: {
+            'Content-Type': 'application/json'
+         },
+          body: JSON.stringify(data) // body data type must match "Content-Type" header
+        });
+        return await response.json(); // parses JSON response into native JavaScript objects
+      }
 
     inputSubmit.addEventListener("click", async function () {
         searchInfo.submit();
@@ -76,25 +112,6 @@ $(document).ready(async function () {
         }
 
     });
-
-    //checks if URL has attribute, if not then it does nothing else it fetchs the appropriate function
-    if (queryType != "http://localhost:8000/") {
-        async function loadResults() {
-            const response = await fetch(queryType);
-            list = await response.json();
-            console.log(list);
-            console.log(list.recordset.length);
-        }
-
-        window.onload = loadResults().then(function () {
-
-            GFG_FUN();
-
-            // Appending the header to the table
-            //$("#table").append(header);
-            //return columns;
-        });
-    }
 
     function GFG_FUN() {
         var cols = [];
