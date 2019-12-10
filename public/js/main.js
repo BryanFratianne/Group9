@@ -54,7 +54,7 @@ $(document).ready(async function () {
             $(this).val(timeStart);
         } else {
             timeStart = this.value;
-            alert("changed start year");
+            //alert("changed start year");
         }
     });
 
@@ -65,7 +65,7 @@ $(document).ready(async function () {
             $(this).val(timeEnd);
         } else {
             timeEnd = this.value;
-            alert("changed end year");
+            //alert("changed end year");
         }
     });
     //changes the action on the query submit form based on what search dropdown is chosen
@@ -117,7 +117,7 @@ $(document).ready(async function () {
     querySubmit.addEventListener("click", async function () {
         updateQueryVariables();
         try {
-            const list1 = await postData(currentQuery, updateQueryVariables);
+            const list1 = await postData(currentQuery, queryVariables);
             list = list1;
             console.log(list); // JSON-string from `response.json()` call
 
@@ -127,7 +127,7 @@ $(document).ready(async function () {
         GFG_FUN();
 
     });
-    //fetch request with approprate patameters such as POST, accepts url and object
+    //fetch request with approprate parameters such as POST, accepts url and object
     async function postData(url = '', data = {}) {
         // Default options are marked with *
         const response = await fetch(url, {
@@ -143,9 +143,9 @@ $(document).ready(async function () {
       //Runs when submit button is pressed on update database page
     inputSubmit.addEventListener("click", async function () {
         updateInputVariables();
-        //currentQuery = "/input";
+        currentQuery = "/storeNewCrime";
         try {
-            const list1 = await postData(currentQuery, updateQueryVariables);
+            const list1 = await postData(currentQuery, inputVariables);
             list = list1;
             console.log(list); // JSON-string from `response.json()` call
 

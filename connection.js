@@ -175,6 +175,44 @@ app.post('/getCrimesByWardWithTime', async function (req, res) {
     }
 });
 
+app.post('/storeNewCrime', async function (req, res) {
+    console.log("connecting 10");
+    console.log(req.body.caseNumber);
+    console.log(req.body.domestic);
+    console.log(req.body.arrest);
+    console.log(req.body.iucr);
+    console.log(req.body.date);
+    console.log(req.body.year);
+    console.log(req.body.block);
+    console.log(req.body.ward);
+    console.log(req.body.district);
+    console.log(req.body.longitude);
+    console.log(req.body.latitude);
+    console.log(req.body.locationDescription);
+    await dbConnect;
+    try {
+        var request = db.request();
+        var result = await request
+            .input('case_number', sql.VarChar(255), req.body.caseNumber)
+            .input('arrest', sql.VarChar(255), req.body.arrest)
+            .input('domestic', sql.VarChar(255), req.body.domestic)
+            .input('iucr', sql.VarChar(255), req.body.iucr)
+            .input('date', sql.VarChar(255), req.body.date)
+            .input('year', sql.VarChar(255), req.body.year)
+            .input('block', sql.VarChar(255), req.body.block)
+            .input('Ward', sql.VarChar(255), req.body.ward)
+            .input('district', sql.VarChar(255), req.body.district)
+            .input('longitude', sql.VarChar(255), req.body.longitude)
+            .input('latitude', sql.VarChar(255), req.body.latitude)
+            .input('location_description', sql.VarChar(255), req.body.locationDescription)
+            .execute('storeNewCrime');
+        console.dir(result);
+        res.json(result);
+    } catch (err) {
+        console.error('SQL error', err);
+    }
+});
+
 app.listen(8000, () => {
     console.log("listening on port 8000");
 });
