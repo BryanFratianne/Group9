@@ -41,14 +41,11 @@
         <center> Chicago Crime Informational Database Interface</center>
     </h1>
 
-    <center class="textResizing"><strong>Description:</strong> Data sample drawn from the ...Police Something
-        Something... of Chicago.<br/>
-        Data consists of ...10... years of crimes, arrest and non-arrest in the Chicago area. <br/>
+    <center class="textResizing"><strong>Description:</strong> Data sample drawn from data.cityofchicago.org.<br/>
+        Data consists of crimes from 2001 to current. <br/>
         Items include but not limited to: Crime type, location(Multiple Types) and date/time.<br/>
+        <h3> Press the button below to toggle between searching for crimes and inputting new crime information </h3><br>
     </center>
-    <br>
-
-
     <center class="textResizing">
         <button id="toggleButton"> Toggle</button>
 
@@ -274,7 +271,7 @@
                 <form name="inputForm">
                     <p>
                         What district did the crime take place in<br>
-                        <select name='district' id='inputDistrictDrop'>
+                        <select name='district' id='inputDistrictDrop' class='inputQueryVariable'>
                             <option value="">District</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -305,7 +302,7 @@
                     </p>
                     <p>
                         What ward did the crime take place in<br>
-                        <select name='ward' id='inputWardDrop'>
+                        <select name='ward' id='inputWardDrop' class='inputQueryVariable'>
                             <option value="">Ward</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -361,35 +358,35 @@
                     </p>
                     <p>
                         Insert the block where the crime took place at<br>
-                        <input type="text" name="block" placeholder="Block">
+                        <input type="text" name="block" placeholder="Block" class='inputQueryVariable'>
                     </p>
                     <p>
                         Time and date crime take place<br>
-                        <input type="text" name="date" placeholder="Time and Date">
+                        <input type="text" name="date" placeholder="Time and Date" class='inputQueryVariable'>
                     </p>
                     <p>
                         what was the Longitude<br>
-                        <input type="text" name="longitude" placeholder="Longitude">
+                        <input type="text" name="longitude" placeholder="Longitude" class='inputQueryVariable'>
                     </p>
                     <p>
                         what was the Latitude<br>
-                        <input type="text" name="latitude" placeholder="Latitude">
+                        <input type="text" name="latitude" placeholder="Latitude" class='inputQueryVariable'>
                     </p>
                     <p>
                         what was is the case number<br>
-                        <input type="text" name="caseNumber" placeholder="Case number">
+                        <input type="text" name="caseNumber" placeholder="Case number" class='inputQueryVariable'>
                     </p>
                     <p>
                         what was the IUCR<br>
-                        <input type="text" name="iucr" placeholder="IUCR">
+                        <input type="text" name="iucr" placeholder="IUCR" class='inputQueryVariable'>
                     </p>
                     <p>
                         Description of location<br>
-                        <input type="text" name="locationDescription" placeholder="Location Description">
+                        <input type="text" name="locationDescription" placeholder="Location Description" class='inputQueryVariable'>
                     </p>
                     <p>
                         Was the crime domestic<br>
-                        <select name='domestic' id='domesticDrop'>
+                        <select name='domestic' id='domesticDrop' class='inputQueryVariable'>
                             <option value=""></option>
                             <option value="TRUE">True</option>
                             <option value="FALSE">False</option>
@@ -397,15 +394,40 @@
                     </p>
                     <P>
                         Did the crime result in an arrest<br>
-                        <select name='arrest' id='arrestDrop'>
+                        <select name='arrest' id='arrestDrop' class='inputQueryVariable'>
                             <option value=""></option>
                             <option value="TRUE">True</option>
                             <option value="FALSE">False</option>
                         </select>
                     </P>
+                    Enter the year the crime happened<br>
+                    <select name='Year' id='input-year' class='inputQueryVariable'>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+
                 </form>
             </div>
-
+            <br>
             <div id="inputSubmitButton">
                 <input type="button" id="inputSubmit" value="Submit">
             </div>

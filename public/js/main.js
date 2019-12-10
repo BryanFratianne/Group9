@@ -8,8 +8,32 @@ $(document).ready(async function () {
     var toggle = document.getElementById("toggleButton");
     var selectedQuery = document.getElementById("select-query");
     var getqueryVariables = document.getElementsByClassName("queryVariable");
-    var queryVariables = {primaryType: undefined, minYear: undefined, maxYear: undefined, block: undefined, ward: undefined, district: undefined};
-    var currentQuery = "/SelectAlliucr"
+    var getinputVariables = document.getElementsByClassName("inputQueryVariable");
+    var queryVariables = {
+        primaryType: undefined,
+        minYear: undefined,
+        maxYear: undefined,
+        block: undefined,
+        ward: undefined,
+        district: undefined
+    };
+    var inputVariables = {
+        district: undefined,
+        ward: undefined,
+        block: undefined,
+        date: undefined,
+        longitude: undefined,
+        latitude: undefined,
+        caseNumber: undefined,
+        iucr: undefined,
+        primaryType: undefined,
+        description: undefined,
+        locationDescription: undefined,
+        domestic: undefined,
+        arrest: undefined,
+        year: undefined
+    };
+    var currentQuery = "/SelectAlliucr";
     var crimeType = "crimeType";
     var timeStart = "2000";
     var timeEnd = "2020";
@@ -17,11 +41,6 @@ $(document).ready(async function () {
     var district = "NULL";
     var ward = "NULL";
     var list = 0;
-
-
-    /*$("#toggleButton").click(function () {
-        alert("shouldToggleHere");
-    });*/
 
     $("select#CrimeType").change(function () {
         primarySearch = this.value;
@@ -35,7 +54,7 @@ $(document).ready(async function () {
             $(this).val(timeStart);
         } else {
             timeStart = this.value;
-            alert("changed start year");
+            //alert("changed start year");
         }
     });
 
@@ -46,7 +65,7 @@ $(document).ready(async function () {
             $(this).val(timeEnd);
         } else {
             timeEnd = this.value;
-            alert("changed end year");
+            //alert("changed end year");
         }
     });
     //changes the action on the query submit form based on what search dropdown is chosen
@@ -56,7 +75,8 @@ $(document).ready(async function () {
         console.log(currentQuery);
     });
 
-    var updateVariables = function() {
+    //updates object that stores information for query requests from fields
+    var updateQueryVariables = function() {
         queryVariables.primaryType = getqueryVariables[0].value;
         queryVariables.minYear = getqueryVariables[1].value;
         queryVariables.maxYear = getqueryVariables[2].value;
@@ -66,11 +86,36 @@ $(document).ready(async function () {
         console.log(queryVariables);
     };
 
+    //updates object that stores information for update requests from fields.
+    var updateInputVariables = function() {
+        inputVariables.district = getinputVariables[0].value;
+        inputVariables.ward = getinputVariables[1].value;
+        inputVariables.block = getinputVariables[2].value;
+        inputVariables.date = getinputVariables[3].value;
+        inputVariables.longitude = getinputVariables[4].value;
+        inputVariables.latitude = getinputVariables[5].value;
+        inputVariables.caseNumber = getinputVariables[6].value;
+        inputVariables.iucr = getinputVariables[7].value;
+        inputVariables.primaryType = getinputVariables[8].value;
+        inputVariables.description = getinputVariables[9].value;
+        inputVariables.locationDescription = getinputVariables[10].value;
+        inputVariables.domestic = getinputVariables[11].value;
+        inputVariables.arrest = getinputVariables[12].value;
+        inputVariables.year = getinputVariables[13].value;
+        console.log(inputVariables);
+    };
+    //creates event listeners that updates object when one of the query request options is changed
     for (var i = 0; i < getqueryVariables.length; i++){
-        getqueryVariables[i].addEventListener('click', updateVariables)
+        getqueryVariables[i].addEventListener('change', updateQueryVariables)
     }
+    //creates event listeners that updates object when one of the input fields have changed
+    for (var i = 0; i < getinputVariables.length; i++){
+        getinputVariables[i].addEventListener('change', updateInputVariables)
+    }
+
+    //runs when submit button has been entered on query page
     querySubmit.addEventListener("click", async function () {
-        //searchInfo.submit();
+        updateQueryVariables();
         try {
             const list1 = await postData(currentQuery, queryVariables);
             list = list1;
@@ -82,7 +127,7 @@ $(document).ready(async function () {
         GFG_FUN();
 
     });
-
+    //fetch request with approprate parameters such as POST, accepts url and object
     async function postData(url = '', data = {}) {
         // Default options are marked with *
         const response = await fetch(url, {
@@ -95,10 +140,21 @@ $(document).ready(async function () {
         return await response.json(); // parses JSON response into native JavaScript objects
       }
 
+      //Runs when submit button is pressed on update database page
     inputSubmit.addEventListener("click", async function () {
-        searchInfo.submit();
-    });
+        updateInputVariables();
+        currentQuery = "/storeNewCrime";
+        try {
+            const list1 = await postData(currentQuery, inputVariables);
+            list = list1;
+            console.log(list); // JSON-string from `response.json()` call
 
+        } catch (error) {
+            console.error(error);
+        }
+        alert("Input Complete");
+    });
+    //Runs when toggle button is selected it hides query page and shows update page
     toggle.addEventListener('click', function switchVisible() {
         if (document.getElementById('hideDiv')) {
 
@@ -112,7 +168,7 @@ $(document).ready(async function () {
         }
 
     });
-
+    //takes JSON with results from database and creates a table
     function GFG_FUN() {
         var cols = [];
 
