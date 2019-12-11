@@ -143,8 +143,25 @@ app.post('/getCrimesByType', async function (req, res) {
     }
 });
 
-app.post('/getCrimesByWard', async function (req, res) {
+app.post('/getCrimesByTypeWithTime', async function (req, res) {
     console.log("connecting 8");
+    await dbConnect;
+    try {
+        var request = db.request();
+        var result = await request
+            .input('primaryType', sql.VarChar(255), req.body.primaryType)
+            .input('dateMin', sql.VarChar(255), req.body.minYear)
+            .input('dateMax', sql.VarChar(255), req.body.maxYear)
+            .execute('getCrimesByTypeWithTime');
+        console.dir(result);
+        res.json(result);
+    } catch (err) {
+        console.error('SQL error', err);
+    }
+});
+
+app.post('/getCrimesByWard', async function (req, res) {
+    console.log("connecting 9");
     await dbConnect;
     try {
         var request = db.request();
@@ -159,7 +176,7 @@ app.post('/getCrimesByWard', async function (req, res) {
 });
 
 app.post('/getCrimesByWardWithTime', async function (req, res) {
-    console.log("connecting 9");
+    console.log("connecting 10");
     await dbConnect;
     try {
         var request = db.request();
@@ -176,7 +193,7 @@ app.post('/getCrimesByWardWithTime', async function (req, res) {
 });
 
 app.post('/storeNewCrime', async function (req, res) {
-    console.log("connecting 10");
+    console.log("connecting 11");
     console.log(req.body.caseNumber);
     console.log(req.body.domestic);
     console.log(req.body.arrest);

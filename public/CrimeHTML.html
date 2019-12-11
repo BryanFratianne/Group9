@@ -55,8 +55,8 @@
                 <div id="query">
                     How would you like to search the database<br>
                     <select name='queryType' id='select-query'>
-                        <option value="/SelectAlliucr">Select Crime By IUCR</option>
-                        <option value="/getCountByCrime">Search number of crimes of given IUCR type</option>
+                        <option value="/SelectAlliucr">See list of iucr primary types and descriptions</option>
+                        <option value="/getCountByCrime">Search number of crimes of given primary type</option>
                         <option value="/getCrimesByBlock">Select Crimes by Street Address</option>
                         <option value="/getCrimesByBlockWithTime">Select Crimes by Street Address with Year
                             constraints
@@ -65,7 +65,8 @@
                         <option value="/getCrimesByDistrictWithTime">Select Crimes that happened in a certain district
                             with year constraints
                         </option>
-                        <option value="/getCrimesByType">Select Crimes by IUCR type</option>
+                        <option value="/getCrimesByType">Select Crimes by primary type</option>
+                        <option value="/getCrimesByTypeWithTime">Select Crimes by primary type with year constraints</option>
                         <option value="/getCrimesByWard">Select Crimes that happened in a certain ward</option>
                         <option value="/getCrimesByWardWithTime">Select Crimes that happened in a certain ward with year
                             constraints
@@ -263,6 +264,9 @@
                 <input type="button" id="querySubmit" value="Submit">
             </div>
             <br>
+            <table align = "center"
+                   id="table" border="1">
+            </table>
         </div>
 
         <div id="showDiv">
@@ -435,9 +439,8 @@
         </div>
     </center>
 </div>
-<table align = "center"
-       id="table" border="1">
-</table>
+
+<br>
 
 </body>
 </html>
