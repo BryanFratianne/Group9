@@ -96,12 +96,10 @@ $(document).ready(async function () {
         inputVariables.latitude = getinputVariables[5].value;
         inputVariables.caseNumber = getinputVariables[6].value;
         inputVariables.iucr = getinputVariables[7].value;
-        inputVariables.primaryType = getinputVariables[8].value;
-        inputVariables.description = getinputVariables[9].value;
-        inputVariables.locationDescription = getinputVariables[10].value;
-        inputVariables.domestic = getinputVariables[11].value;
-        inputVariables.arrest = getinputVariables[12].value;
-        inputVariables.year = getinputVariables[13].value;
+        inputVariables.locationDescription = getinputVariables[8].value;
+        inputVariables.domestic = getinputVariables[9].value;
+        inputVariables.arrest = getinputVariables[10].value;
+        inputVariables.year = getinputVariables[11].value;
         console.log(inputVariables);
     };
     //creates event listeners that updates object when one of the query request options is changed
